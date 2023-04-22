@@ -1,4 +1,4 @@
-import { Link, Route } from './components';
+import { Link, Route, Router } from './components';
 import Home from './pages';
 import NotFound from './pages/404';
 import Authors from './pages/authors';
@@ -6,7 +6,7 @@ import Books from './pages/books';
 
 function App() {
   return (
-    <>
+    <Router>
       <Route path="/" component={<Home />} />
       <Route path="/books" component={<Books />} />
       <Route path="/authors" component={<Authors />} />
@@ -22,7 +22,7 @@ function App() {
           <Link to={'/authors'}>authors</Link>
         </li>
       </ul>
-    </>
+    </Router>
   );
 }
 
