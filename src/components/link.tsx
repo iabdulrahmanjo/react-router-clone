@@ -3,8 +3,9 @@ import { useRouter } from './router';
 interface LinkProps {
   to: string;
   children: React.ReactNode;
+  query?: { [key: string]: string };
 }
-export const Link = ({ to, children }: LinkProps) => {
+export const Link = ({ to, children, query }: LinkProps) => {
   const { activePath, setActivePath } = useRouter();
 
   const navigate = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -13,7 +14,15 @@ export const Link = ({ to, children }: LinkProps) => {
     // push new state to stack history
     if (activePath !== to) {
       setActivePath(to);
-      window.history.pushState({}, '', to);
+      let querystring = '';
+      if (query) {
+        querystring =
+          '?' +
+          Object.keys(query)
+            .map((queryKey) => `${queryKey}=${query[queryKey]}`)
+            .join('&');
+      }
+      window.history.pushState(null, '', `${to}${querystring}`);
     } else {
       return;
     }

@@ -9,7 +9,9 @@ export const Books = () => {
           <Link to="/books/1">Introduction to Java</Link>
         </li>
         <li>
-          <Link to="/books/2">Introduction to Python</Link>
+          <Link to="/books/2" query={{ search: 'python', test: 'work' }}>
+            Introduction to Python
+          </Link>
         </li>
         <li>
           <Link to="/books/3">Introduction to Rust</Link>
