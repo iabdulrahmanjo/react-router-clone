@@ -1,16 +1,18 @@
 import { Link, Route, Router } from './components';
-import Home from './pages';
-import NotFound from './pages/404';
-import Authors from './pages/authors';
-import Books from './pages/books';
+import {
+  Author,
+  AuthorBook,
+  Authors,
+  Book,
+  Books,
+  Home,
+  NotFound,
+} from './pages';
 
 function App() {
   return (
     <Router>
-      <Route path="/" component={<Home />} />
-      <Route path="/books" component={<Books />} />
-      <Route path="/authors" component={<Authors />} />
-      <Route path="*" component={<NotFound />} />
+      <h3>Navigation</h3>
       <ul>
         <li>
           <Link to={'/'}>home</Link>
@@ -22,6 +24,13 @@ function App() {
           <Link to={'/authors'}>authors</Link>
         </li>
       </ul>
+      <Route path="/" component={<Home />} />
+      <Route path="/books" component={<Books />} />
+      <Route path="/authors" component={<Authors />} />
+      <Route path="/books/:bookId" component={<Book />} />
+      <Route path="/authors/:authorId" component={<Author />} />
+      <Route path="/authors/:authorId/:bookId" component={<AuthorBook />} />
+      <Route path="*" component={<NotFound />} />
     </Router>
   );
 }

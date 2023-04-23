@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from './router';
+import { isPathMatches } from '../utils';
 
 interface RouteProps {
   path: string;
@@ -26,10 +27,13 @@ export const Route = ({ path, component }: RouteProps) => {
   // the current active route or no
   useEffect(() => {
     if (routes.length > 0) {
-      const route = routes.find((route) => route.path === activePath);
+      const route = routes.find((route) =>
+        isPathMatches(activePath, route.path)
+      );
       if (route) {
-        if (route?.path === path) setHasToRender(true);
-        else setHasToRender(false);
+        if (route?.path === path) {
+          setHasToRender(true);
+        } else setHasToRender(false);
       } else {
         // 404 page
         if (path === routes[routes.length - 1].path) setHasToRender(true);

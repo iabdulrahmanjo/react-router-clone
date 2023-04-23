@@ -1,4 +1,4 @@
-import { useRouter } from '.';
+import { useRouter } from './router';
 
 interface LinkProps {
   to: string;
