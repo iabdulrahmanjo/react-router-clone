@@ -5,3 +5,4 @@ export * from './book';
 export * from './books';
 export * from './home';
 export * from './authorBook';
+export * from './layout';
